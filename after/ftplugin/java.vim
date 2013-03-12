@@ -1,7 +1,7 @@
 setlocal include=^\\s*import
 setlocal includeexpr='src/'.substitute(v:fname,'\\.','/','g')
 
-let b:jars = split(globpath(getcwd(), '**/*.jar'),'\n')
+let b:jars = split(globpath(getcwd().'/libs', '**/*.jar'),'\n')
 let b:cps=split($CLASSPATH,':')
 for b:jar in b:jars
 	if index(b:cps, b:jar)==-1
