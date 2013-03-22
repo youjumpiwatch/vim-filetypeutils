@@ -1,1 +1,1 @@
-setlocal path+=/usr/local/include
+setlocal path+=/usr/local/include,**
