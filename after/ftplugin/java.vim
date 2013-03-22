@@ -1,4 +1,4 @@
-setlocal path=**
+setlocal path=.
 
 let b:jars = split(globpath(getcwd().'/libs', '**/*.jar'),'\n')
 let b:cps=split($CLASSPATH,':')
@@ -11,9 +11,13 @@ if !empty(b:jars)
 endif
 let $CLASSPATH=join(b:cps, ':')
 
-function! s:IncludeExpr(name)
-	let b:fileNameWithoutExt = substitute(a:fname,'\\.','/','g')
-	return globpath(&path, '**/'.b:fileNameWithoutExt.'.java')
+function! IncludeExpr(name)
+	if stridx(a:name, 'java') == 0 ||  stridx(a:name, 'android') == 0
+		return ''
+	endif
+
+	let b:fileNameWithoutExt = substitute(a:name,'\.','/','g')
+	return globpath(&path, '**/'.b:fileNameWithoutExt.&suffixesadd)
 endfunction
-setlocal include=^\\s*import\\s\+
-setlocal includeexpr=s:IncludeExpr(v:fname)
+setlocal include=^\\s*import
+setlocal includeexpr=IncludeExpr(v:fname)
