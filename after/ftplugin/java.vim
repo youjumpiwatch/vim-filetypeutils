@@ -1,4 +1,5 @@
 setlocal include=^\\s*import
+setlocal path=**
 
 let b:jars = split(globpath(getcwd().'/libs', '**/*.jar'),'\n')
 let b:cps=split($CLASSPATH,':')
