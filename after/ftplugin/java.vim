@@ -1,4 +1,4 @@
-setlocal include=^\\s*import
+setlocal include=^\\s*import\\s\+
 setlocal path=**
 
 let b:jars = split(globpath(getcwd().'/libs', '**/*.jar'),'\n')
